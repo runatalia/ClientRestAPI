@@ -24,11 +24,21 @@ public class Communication {
         return allEmployees;
     }
 
-    public Employee getEployee() {
-        return null;
+    public Employee getEployee(int id) {   //get Employee by id
+        Employee employee = restTemplate.getForObject(URL+"/"+id, Employee.class); //send a request to the URL and wait for a response Employee
+        return employee;
     }
 
-    public void saveEployee() {
+    public void saveEployee(Employee employee) {   //saving and updating a worker
+        int id = employee.getId();
+        if(id==0){
+        ResponseEntity <String> responseEntity = restTemplate.postForEntity(URL, employee, String.class);
+        System.out.println("New employee was added to DB");
+        System.out.println(responseEntity.getBody());
+        }
+        else{restTemplate.put(URL, employee);
+        System.out.println("Employeewith ID "+id+" was  updated");
+        }
     }
 
     public void deleteEployee() {
