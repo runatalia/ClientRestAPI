@@ -6,7 +6,7 @@ package com.springmvc.restapi.entity;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class Employee implements Serializable{
 
     private int id;
     private String name;

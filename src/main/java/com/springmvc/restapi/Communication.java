@@ -25,23 +25,25 @@ public class Communication {
     }
 
     public Employee getEployee(int id) {   //get Employee by id
-        Employee employee = restTemplate.getForObject(URL+"/"+id, Employee.class); //send a request to the URL and wait for a response Employee
+        Employee employee = restTemplate.getForObject(URL + "/" + id, Employee.class); //send a request to the URL and wait for a response Employee
         return employee;
     }
 
     public void saveEployee(Employee employee) {   //saving and updating a worker
         int id = employee.getId();
-        if(id==0){
-        ResponseEntity <String> responseEntity = restTemplate.postForEntity(URL, employee, String.class);
-        System.out.println("New employee was added to DB");
-        System.out.println(responseEntity.getBody());
-        }
-        else{restTemplate.put(URL, employee);
-        System.out.println("Employeewith ID "+id+" was  updated");
+        if (id == 0) {
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(URL, employee, String.class);
+            System.out.println("New employee was added to DB");
+            System.out.println(responseEntity.getBody());
+        } else {
+            restTemplate.put(URL, employee);
+            System.out.println("Employeewith ID " + id + " was  updated");
         }
     }
 
-    public void deleteEployee() {
+    public void deleteEployee(int id) {
+        restTemplate.delete(URL + "/" + id);
+        System.out.println("Employee with ID " + id + " was deleted from DB");
     }
 
 }

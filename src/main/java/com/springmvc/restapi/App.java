@@ -1,4 +1,3 @@
-
 package com.springmvc.restapi;
 
 import com.springmvc.restapi.configuration.Config;
@@ -18,9 +17,11 @@ public class App {
         Employee employeeID = communication.getEployee(1);
         System.out.println(employeeID);
         System.out.println("--------------------------------------------------------------------------------- ");
-//        Employee emp = new Employee("Asya","Kishkina","IT",1000);
-//        communication.saveEployee(emp);
-//    //    emp.setId(6);
+        Employee emp = new Employee("Natalia", "Borodavitsina", "IT", 2000);
+        emp.setId(1);
+        communication.saveEployee(emp);
+        System.out.println("--------------------------------------------------------------------------------- ");
+        communication.deleteEployee(4);
         context.registerShutdownHook();
     }
 }
